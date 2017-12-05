@@ -13,6 +13,8 @@ namespace NeroEngine {
 	public:
 		Window(char *title, int width, int height, std::shared_ptr<ColorRGB> backGround);
 		~Window();
+
+
 		virtual void init();
 		virtual void update();
 
@@ -41,6 +43,8 @@ namespace NeroEngine {
 		std::shared_ptr<ColorRGB> backGround;
 
 		NeroEngine::GLSLProgram* _glslProgram;
+
+		void glInit();
 
 	};
 };

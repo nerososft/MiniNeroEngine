@@ -13,6 +13,7 @@ namespace NeroEngine {
 		height(height),
 		backGround(backGround) {
 		_vboID = 0;
+		glInit();
 		init();
 	}
 
@@ -71,7 +72,8 @@ namespace NeroEngine {
 	void Window::cursor_position_callback(GLFWwindow* window, double x, double y) {
 		return;
 	}
-	void Window::init() {
+
+	void Window::glInit() {
 		if (!glfwInit()) {
 			fatalError("glfw init failed");
 			exit(0);
@@ -82,7 +84,7 @@ namespace NeroEngine {
 			fatalError("win init failed");
 			exit(EXIT_FAILURE);
 		}
-	
+
 		framebuffer_size_callback(win, this->width, this->height);
 		glfwSetKeyCallback(win, StateBase::keycallback_dispatch);
 		glfwSetFramebufferSizeCallback(win, StateBase::framebuffer_size_callback_dispatch);
@@ -90,15 +92,15 @@ namespace NeroEngine {
 
 
 		GLenum err = glewInit();
-		if (GLEW_OK != err){
+		if (GLEW_OK != err) {
 			fatalError("glew init failed");
 			fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 			exit(0);
 		}
 		fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 		printf("%s\n", glGetString(GL_VERSION));
-	
-			
+	}
+	void Window::init() {
 		if (_vboID == 0) {
 			glGenBuffers(1, &_vboID); // create a buffer
 		}
