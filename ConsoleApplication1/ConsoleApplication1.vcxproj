@@ -148,23 +148,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\3015218102_hw01\3015218102_hw01\ColorRGB.h" />
-    <ClInclude Include="..\..\3015218102_hw01\3015218102_hw01\Errors.h" />
-    <ClInclude Include="..\..\3015218102_hw01\3015218102_hw01\GLSLProgram.h" />
-    <ClInclude Include="..\..\3015218102_hw01\3015218102_hw01\StateBase.h" />
-    <ClInclude Include="..\..\3015218102_hw01\3015218102_hw01\Vertex.h" />
-    <ClInclude Include="..\..\3015218102_hw01\3015218102_hw01\Window.h" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\3015218102_hw01\3015218102_hw01\ColorRGB.cpp" />
-    <ClCompile Include="..\..\3015218102_hw01\3015218102_hw01\Errors.cpp" />
-    <ClCompile Include="..\..\3015218102_hw01\3015218102_hw01\GLSLProgram.cpp" />
-    <ClCompile Include="..\..\3015218102_hw01\3015218102_hw01\main.cpp" />
-    <ClCompile Include="..\..\3015218102_hw01\3015218102_hw01\StateBase.cpp" />
-    <ClCompile Include="..\..\3015218102_hw01\3015218102_hw01\Window.cpp" />
+    <ClInclude Include="ColorRGB.h" />
+    <ClInclude Include="Errors.h" />
+    <ClInclude Include="GLSLProgram.h" />
+    <ClInclude Include="StateBase.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="ColorRGB.cpp" />
+    <ClCompile Include="Errors.cpp" />
+    <ClCompile Include="GLSLProgram.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="StateBase.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
