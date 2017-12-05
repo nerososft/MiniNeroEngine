@@ -109,24 +109,24 @@ namespace NeroEngine {
 
 		//first triangle
 		//right bottom
-		vertexData[0].setPosition(0.5f, -0.5f);
+		vertexData[0].setPosition(0.5f, -0.5f, 0.0f);
 		vertexData[0].setUV(1.0f, 1.0f);
 		//left bottom
-		vertexData[1].setPosition(-0.5f, -0.5f);
+		vertexData[1].setPosition(-0.5f, -0.5f, 0.0f);
 		vertexData[1].setUV(0.0f, 1.0f);
 		//left top
-		vertexData[2].setPosition(-0.5f, 0.5f);
+		vertexData[2].setPosition(-0.5f, 0.5f, 0.0f);
 		vertexData[2].setUV(0.0f, 0.0f);
 
 		//second triangle
 		//left top
-		vertexData[3].setPosition(-0.5f, 0.5f);
+		vertexData[3].setPosition(-0.5f, 0.5f, 0.0f);
 		vertexData[3].setUV(0.0f, 0.0f);
 		//right top
-		vertexData[4].setPosition(0.5f, 0.5f);
+		vertexData[4].setPosition(0.5f, 0.5f, 0.0f);
 		vertexData[4].setUV(1.0f, 0.0f);
 		//right bottom
-		vertexData[5].setPosition(0.5f, -0.5f);
+		vertexData[5].setPosition(0.5f, -0.5f, 0.0f);
 		vertexData[5].setUV(1.0f, 1.0f);
 
 		for (int i = 0; i < 5; i++) {
@@ -164,7 +164,7 @@ namespace NeroEngine {
 		glEnableVertexAttribArray(2);
 		
 		//position attrib pointer
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, position));
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, position));
 		//color attrib pointer
 		glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void *)offsetof(Vertex, color));
 		//uv attrib pointer
