@@ -160,6 +160,7 @@
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="ObjLoader.h" />
+    <ClInclude Include="picoPNG.h" />
     <ClInclude Include="StateBase.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
+    <ClCompile Include="picoPNG.cpp" />
     <ClCompile Include="StateBase.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

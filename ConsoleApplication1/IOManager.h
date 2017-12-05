@@ -1,6 +1,5 @@
-#ifndef __NERO_ENGINE_IO_MANAGER__
+//#ifndef __NERO_ENGINE_IO_MANAGER__
 #define __NERO_ENGINE_IO_MANAGER__
-
 #include <vector>
 #include <string>
 namespace NeroEngine {
@@ -9,5 +8,5 @@ namespace NeroEngine {
 	public:
 		static bool readFileToBuffer(std::string filePath, std::vector<unsigned char>& buffer);
 	};
-}
-#endif // ! __NERO_ENGINE_IO_MANAGER__
+};
+//#endif // __NERO_ENGINE_IO_MANAGER__
