@@ -109,30 +109,30 @@ namespace NeroEngine {
 
 		//first triangle
 		//right bottom
-		vertexData[0].setPosition(1.0f, -1.0f);
+		vertexData[0].setPosition(0.5f, -0.5f);
 		vertexData[0].setUV(1.0f, 1.0f);
 		//left bottom
-		vertexData[1].setPosition(-1.0f, -1.0f);
+		vertexData[1].setPosition(-0.5f, -0.5f);
 		vertexData[1].setUV(0.0f, 1.0f);
 		//left top
-		vertexData[2].setPosition(-1.0f, 1.0f);
+		vertexData[2].setPosition(-0.5f, 0.5f);
 		vertexData[2].setUV(0.0f, 0.0f);
 
 		//second triangle
 		//left top
-		vertexData[3].setPosition(-1.0f, 1.0f);
+		vertexData[3].setPosition(-0.5f, 0.5f);
 		vertexData[3].setUV(0.0f, 0.0f);
 		//right top
-		vertexData[4].setPosition(1.0f, 1.0f);
+		vertexData[4].setPosition(0.5f, 0.5f);
 		vertexData[4].setUV(1.0f, 0.0f);
 		//right bottom
-		vertexData[5].setPosition(1.0f, -1.0f);
+		vertexData[5].setPosition(0.5f, -0.5f);
 		vertexData[5].setUV(1.0f, 1.0f);
 
 		for (int i = 0; i < 5; i++) {
 			vertexData[i].setColor(255, 0, 255, 255);
 		}
-		vertexData[4].setColor(0, 0, 255, 255);
+		vertexData[1].setColor(255, 0, 0, 255);
 		vertexData[4].setColor(0, 255, 0, 255);
 
 
