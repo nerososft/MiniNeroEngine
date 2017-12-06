@@ -1,6 +1,7 @@
 
 #ifndef __NERO_ENGINE_GLSL_PROGRAM__
 #define __NERO_ENGINE_GLSL_PROGRAM__
+
 #include <gl\glew.h>
 namespace NeroEngine {
 	class GLSLProgram

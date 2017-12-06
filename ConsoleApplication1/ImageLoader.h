@@ -7,6 +7,8 @@ namespace NeroEngine {
 	class ImageLoader {
 	public:
 		static GLTexture loadPNG(std::string filePath);
+
+		static GLTexture loadTGA(std::string filePath);
 	};
 }
 #endif // __NERO_ENGINE_IMAGE_LOADER__

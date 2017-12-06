@@ -2,6 +2,7 @@
 in vec3 fragmentPosition;
 in vec4 fragmentColor;
 in vec2 fragmentUV;
+in vec3 fragmentNormal;
 
 out vec4 color;
 

@@ -7,6 +7,7 @@ namespace NeroEngine {
 	{
 	public:
 		static bool readFileToBuffer(std::string filePath, std::vector<unsigned char>& buffer);
+		static bool readFileToString(std::string filePath, std::string data);
 	};
 };
 //#endif // __NERO_ENGINE_IO_MANAGER__

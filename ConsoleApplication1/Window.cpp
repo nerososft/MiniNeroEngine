@@ -6,6 +6,8 @@
 #include <sstream>
 #include "Vertex.h"
 #include "Errors.h"
+#include "ObjLoader.h"
+
 namespace NeroEngine {
 	Window::Window(char *title, int width, int height, std::shared_ptr<ColorRGB> backGround) :
 		title(title),
@@ -105,12 +107,18 @@ namespace NeroEngine {
 			glGenBuffers(1, &_vboID); // create a buffer
 		}
 
-		Vertex vertexData[6];
+		ObjLoader ObjLoader;
+
+		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
+		
+
+		/*Vertex vertexData[6];
 
 		//first triangle
 		//right bottom
 		vertexData[0].setPosition(0.5f, -0.5f, 0.0f);
 		vertexData[0].setUV(1.0f, 1.0f);
+		
 		//left bottom
 		vertexData[1].setPosition(-0.5f, -0.5f, 0.0f);
 		vertexData[1].setUV(0.0f, 1.0f);
@@ -131,13 +139,15 @@ namespace NeroEngine {
 
 		for (int i = 0; i < 5; i++) {
 			vertexData[i].setColor(255, 0, 255, 255);
+			vertexData[i].setNormal(0, 0, 1);
 		}
 		vertexData[1].setColor(255, 0, 0, 255);
 		vertexData[4].setColor(0, 255, 0, 255);
 
-
+		*/
+		Vertex* data  = &_vertdata[0];
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);//先将buffer绑定到当前
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);//将顶点数组放入这个buffer
+		glBufferData(GL_ARRAY_BUFFER, sizeof(_vertdata), data, GL_STATIC_DRAW);//将顶点数组放入这个buffer
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		_glslProgram = new NeroEngine::GLSLProgram();
@@ -145,6 +155,7 @@ namespace NeroEngine {
 		_glslProgram->addAttribute("vertexPosition");
 		_glslProgram->addAttribute("vertexColor");
 		_glslProgram->addAttribute("vertexUV");
+		_glslProgram->addAttribute("vertexNormal");
 		_glslProgram->linkShaders();
 
 	}
@@ -157,6 +168,7 @@ namespace NeroEngine {
 		_glslProgram->use();
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
 
+	
 		glEnableVertexAttribArray(0);
 
 		glEnableVertexAttribArray(1);
@@ -169,8 +181,10 @@ namespace NeroEngine {
 		glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void *)offsetof(Vertex, color));
 		//uv attrib pointer
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, uv));
+		//normal attrib pointer
+		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, normal));
 		
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glDrawArrays(GL_TRIANGLES, 0, sizeof(_vertdata));
 		
 		glDisableVertexAttribArray(0);
 

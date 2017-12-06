@@ -39,4 +39,8 @@ namespace NeroEngine {
 		return texture;
 
 	}
+	GLTexture ImageLoader::loadTGA(std::string filePath) {
+		GLTexture texture = {};
+		return texture;
+	}
 };

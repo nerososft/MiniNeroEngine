@@ -6,6 +6,8 @@
 #include "ColorRGB.h"
 #include "GLSLProgram.h"
 #include <memory>
+#include <vector>
+#include "Vertex.h"
 
 namespace NeroEngine {
 	class Window : public StateBase
@@ -32,6 +34,8 @@ namespace NeroEngine {
 		void Render(void);
 		int run();
 
+		
+
 	private:
 		GLFWwindow *win;
 
@@ -43,6 +47,8 @@ namespace NeroEngine {
 		std::shared_ptr<ColorRGB> backGround;
 
 		NeroEngine::GLSLProgram* _glslProgram;
+
+		std::vector<Vertex> _vertdata;
 
 		void glInit();
 

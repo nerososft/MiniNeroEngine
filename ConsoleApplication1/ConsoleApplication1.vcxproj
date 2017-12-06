@@ -159,6 +159,7 @@
     <ClInclude Include="GLTexture.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IOManager.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="picoPNG.h" />
     <ClInclude Include="StateBase.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="picoPNG.cpp" />
     <ClCompile Include="StateBase.cpp" />

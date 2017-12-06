@@ -20,4 +20,22 @@ namespace NeroEngine {
 
 
 	}
+
+	bool IOManager::readFileToString(std::string filePath, std::string data) {
+		std::ifstream file(filePath);
+		if (file.fail()) {
+			perror(filePath.c_str());
+			return false;
+		}
+
+		file.seekg(0, std::ios::end);
+		int len = file.tellg();
+		file.seekg(std::ios::beg);
+
+		char* str = new char[len];
+		file.read(str, len);
+
+		data = str;
+		return true;
+	}
 }
