@@ -1,0 +1,31 @@
+﻿  Window.cpp
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_common.inl : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_integer.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\window.cpp(74): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\window.cpp(111): warning C4101: “imageLoader”: 未引用的局部变量
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\window.cpp(138): warning C4305: “+=”: 从“double”到“float”截断
+  StateBase.cpp
+  picoPNG.cpp
+  ObjLoader.cpp
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\objloader.cpp(166): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  Mesh.cpp
+  main.cpp
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_common.inl : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_integer.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  IOManager.cpp
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\iomanager.cpp(12): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\iomanager.cpp(14): warning C4244: “-=”: 从“std::streamoff”转换到“int”，可能丢失数据
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\iomanager.cpp(32): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
+  InputManager.cpp
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_common.inl : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_integer.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  ImageLoader.cpp
+  GLSLProgram.cpp
+  Errors.cpp
+  ColorRGB.cpp
+  Camera3D.cpp
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_common.inl : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\thrid\glm\core\func_integer.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  正在生成代码...
+  ConsoleApplication1.vcxproj -> C:\Users\neros\Documents\Visual Studio 2015\Projects\ConsoleApplication1\x64\Debug\NeroEngine.exe
+  ConsoleApplication1.vcxproj -> C:\Users\neros\Documents\Visual Studio 2015\Projects\ConsoleApplication1\x64\Debug\NeroEngine.pdb (Full PDB)

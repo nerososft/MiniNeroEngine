@@ -109,21 +109,11 @@ namespace NeroEngine {
 
 		ObjLoader ObjLoader;
 		ImageLoader imageLoader;
-		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
+	
 		_tga = imageLoader.loadTGA("obj/ArcticCondorGold.tga").texID;
+		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
+		_dragonMesh = Mesh(_vertdata, _tga);
 		
-	
-		Vertex vertexData[2250];
-		for (int i = 0; i < _vertdata.size(); i++) {
-			//std::cout << "x:" << _vertdata[i].position.x << " ,y:" << _vertdata[i].position.y << " ,z:" << _vertdata[i].position.z << std::endl;
-			//std::cout << "u:" << _vertdata[i].uv.u << " ,v:" << _vertdata[i].uv.v << std::endl;
-			vertexData[i] = _vertdata[i];
-		}
-	
-		glBindBuffer(GL_ARRAY_BUFFER, _vboID);//先将buffer绑定到当前
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);//将顶点数组放入这个buffer
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
 		_glslProgram = new NeroEngine::GLSLProgram();
 		_glslProgram->complieShaders("shader/myshader.vert","shader/myshader.frag");
 		_glslProgram->addAttribute("vertexPosition");
@@ -177,25 +167,9 @@ namespace NeroEngine {
 		glm::mat4 projectionMatrix = _camera.getCameraMatrix();
 		GLuint pUniform = _glslProgram->getUniformLocation("P");
 		glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
-		glBindTexture(GL_TEXTURE_2D, _tga);
+	
+		_dragonMesh.draw();
 
-		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		glEnableVertexAttribArray(2);
-		//position attrib pointer
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, position));
-		//color attrib pointer
-		glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void *)offsetof(Vertex, color));
-		//uv attrib pointer
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, uv));
-		//normal attrib pointer
-		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, normal));
-		glDrawArrays(GL_TRIANGLES, 0, 2250);
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		
 		_glslProgram->unuse();
 	}

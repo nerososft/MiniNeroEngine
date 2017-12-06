@@ -11,6 +11,7 @@
 #include "TGATexture.h"
 #include "Camera3D.h"
 #include "InputManager.h"
+#include "Mesh.h"
 
 namespace NeroEngine {
 	class Window : public StateBase
@@ -54,6 +55,7 @@ namespace NeroEngine {
 		InputManager _inputManager;
 
 		std::vector<Vertex> _vertdata;
+		Mesh _dragonMesh;
 
 		GLuint _tga;
 
