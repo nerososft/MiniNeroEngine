@@ -7,6 +7,7 @@
 #include "Vertex.h"
 #include "Errors.h"
 #include "ObjLoader.h"
+#include "ImageLoader.h"
 
 namespace NeroEngine {
 	Window::Window(char *title, int width, int height, std::shared_ptr<ColorRGB> backGround) :
@@ -90,6 +91,9 @@ namespace NeroEngine {
 		framebuffer_size_callback(win, this->width, this->height);
 		glfwSetKeyCallback(win, StateBase::keycallback_dispatch);
 		glfwSetFramebufferSizeCallback(win, StateBase::framebuffer_size_callback_dispatch);
+		glfwSetMouseButtonCallback(win, StateBase::mouse_button_callback_dispatch);
+		glfwSetCursorPosCallback(win, StateBase::cursor_position_callback_dispatch);
+
 		glfwMakeContextCurrent(win);
 
 
@@ -108,52 +112,20 @@ namespace NeroEngine {
 		}
 
 		ObjLoader ObjLoader;
-
+		ImageLoader imageLoader;
 		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
+		_tga = imageLoader.loadTGA("obj/ArcticCondorGold.tga").texID;
 		
 		
 
 		
 		Vertex vertexData[2250];
 		for (int i = 0; i < _vertdata.size(); i++) {
-			std::cout << "x:" << _vertdata[i].position.x << " ,y:" << _vertdata[i].position.y << " ,z:" << _vertdata[i].position.z << std::endl;
+			//std::cout << "x:" << _vertdata[i].position.x << " ,y:" << _vertdata[i].position.y << " ,z:" << _vertdata[i].position.z << std::endl;
+			//std::cout << "u:" << _vertdata[i].uv.u << " ,v:" << _vertdata[i].uv.v << std::endl;
 			vertexData[i] = _vertdata[i];
 		}
-		
-		/*
-		//first triangle
-		//right bottom
-		vertexData[0].setPosition(0.5f, -0.5f, 0.0f);
-		vertexData[0].setUV(1.0f, 1.0f);
-		
-		//left bottom
-		vertexData[1].setPosition(-0.5f, -0.5f, 0.0f);
-		vertexData[1].setUV(0.0f, 1.0f);
-		//left top
-		vertexData[2].setPosition(-0.5f, 0.5f, 0.0f);
-		vertexData[2].setUV(0.0f, 0.0f);
-
-		//second triangle
-		//left top
-		vertexData[3].setPosition(-0.5f, 0.5f, 0.0f);
-		vertexData[3].setUV(0.0f, 0.0f);
-		//right top
-		vertexData[4].setPosition(0.5f, 0.5f, 0.0f);
-		vertexData[4].setUV(1.0f, 0.0f);
-		//right bottom
-		vertexData[5].setPosition(0.5f, -0.5f, 0.0f);
-		vertexData[5].setUV(1.0f, 1.0f);
-
-		for (int i = 0; i < 5; i++) {
-			vertexData[i].setColor(255, 0, 255, 255);
-			vertexData[i].setNormal(0, 0, 1);
-		}
-		vertexData[1].setColor(255, 0, 0, 255);
-		vertexData[4].setColor(0, 255, 0, 255);
-
-		*/
-
-
+	
 	
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);//先将buffer绑定到当前
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);//将顶点数组放入这个buffer
@@ -174,16 +146,22 @@ namespace NeroEngine {
 
 
 	void Window::Render() {
+		glClearDepth(1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
 		_glslProgram->use();
-		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+		glActiveTexture(GL_TEXTURE0);
 
-	
-		glEnableVertexAttribArray(0);
-
-		glEnableVertexAttribArray(1);
-
-		glEnableVertexAttribArray(2);
+		GLuint textureUniform = _glslProgram->getUniformLocation("mySampler");
+		glUniform1i(textureUniform, 0);
 		
+		glBindTexture(GL_TEXTURE_2D, _tga);
+
+		glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+		glEnableVertexAttribArray(2);
 		//position attrib pointer
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, position));
 		//color attrib pointer
@@ -192,16 +170,10 @@ namespace NeroEngine {
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, uv));
 		//normal attrib pointer
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, normal));
-		
 		glDrawArrays(GL_TRIANGLES, 0, 2250);
-		
 		glDisableVertexAttribArray(0);
-
 		glDisableVertexAttribArray(1);
-
 		glDisableVertexAttribArray(2);
-
-
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		
 		_glslProgram->unuse();

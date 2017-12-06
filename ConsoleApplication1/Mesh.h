@@ -12,7 +12,8 @@ namespace NeroEngine {
 			GLint textureId); 
 	private:
 		std::vector<Vertex> vertData;// 顶点数据
-		GLuint VAOId, VBOId; // 缓存对象
+		GLuint VAOId;
+		GLuint VBOId; // 缓存对象
 		GLint textureId; // 纹理对象id
 		void init();  // 建立VAO,VBO等缓冲区
 	};

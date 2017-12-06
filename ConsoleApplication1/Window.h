@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include "Vertex.h"
+#include "TGATexture.h"
 
 namespace NeroEngine {
 	class Window : public StateBase
@@ -49,6 +50,8 @@ namespace NeroEngine {
 		NeroEngine::GLSLProgram* _glslProgram;
 
 		std::vector<Vertex> _vertdata;
+
+		GLuint _tga;
 
 		void glInit();
 

@@ -37,7 +37,6 @@ namespace NeroEngine {
 				UV v;
 				s >> v.u;
 				s >> v.v;
-
 				//v.v = -v.v;  // 注意这里加载的dds纹理 要对y进行反转
 				uvData.push_back(v);
 			}
@@ -82,9 +81,9 @@ namespace NeroEngine {
 
 		for (int i = 0; i < positionData.size();i++) {
 			Vertex vertex;
-			vertex.setColor(255, 0, 0,255);
+			vertex.setColor(255, 255, 255,255);
 			vertex.setNormal(0, 1, 0);
-			vertex.setUV(1, 0);
+			vertex.setUV(uvData[i].u, uvData[i].v);
 			vertex.setPosition(positionData[i].x, positionData[i].y,positionData[i].z);
 			vertData.push_back(vertex);
 		}
