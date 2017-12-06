@@ -111,9 +111,16 @@ namespace NeroEngine {
 
 		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
 		
+		
 
-		/*Vertex vertexData[6];
-
+		
+		Vertex vertexData[2250];
+		for (int i = 0; i < _vertdata.size(); i++) {
+			std::cout << "x:" << _vertdata[i].position.x << " ,y:" << _vertdata[i].position.y << " ,z:" << _vertdata[i].position.z << std::endl;
+			vertexData[i] = _vertdata[i];
+		}
+		
+		/*
 		//first triangle
 		//right bottom
 		vertexData[0].setPosition(0.5f, -0.5f, 0.0f);
@@ -145,9 +152,11 @@ namespace NeroEngine {
 		vertexData[4].setColor(0, 255, 0, 255);
 
 		*/
-		Vertex* data  = &_vertdata[0];
+
+
+	
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);//先将buffer绑定到当前
-		glBufferData(GL_ARRAY_BUFFER, sizeof(_vertdata), data, GL_STATIC_DRAW);//将顶点数组放入这个buffer
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);//将顶点数组放入这个buffer
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		_glslProgram = new NeroEngine::GLSLProgram();
@@ -184,7 +193,7 @@ namespace NeroEngine {
 		//normal attrib pointer
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, normal));
 		
-		glDrawArrays(GL_TRIANGLES, 0, sizeof(_vertdata));
+		glDrawArrays(GL_TRIANGLES, 0, 2250);
 		
 		glDisableVertexAttribArray(0);
 

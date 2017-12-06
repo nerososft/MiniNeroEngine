@@ -24,6 +24,7 @@ namespace NeroEngine {
 		}
 
 		std::vector<UV> uvData;
+		std::vector<Position> tempPositionData;
 		std::vector<Position> positionData;
 		std::vector<Normal> normalData;
 
@@ -60,7 +61,13 @@ namespace NeroEngine {
 			}
 			else if (line.substr(0, 1) == "f") // face
 			{
-				
+				std::istringstream s(line.substr(1));
+				std::string firstVertex;
+				s >> firstVertex;
+				std::string secondVertex;
+				s >> secondVertex;
+				std::string thridVertex;
+				s >> thridVertex;
 			}
 			else if (line[0] == '#') // comment
 			{
