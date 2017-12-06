@@ -24,13 +24,7 @@ namespace NeroEngine {
 		virtual void init();
 		virtual void update();
 
-		virtual void keycallback(
-			GLFWwindow *window,
-			int key,
-			int scancode,
-			int action,
-			int mods);
-
+		virtual void keyboard_callback(GLFWwindow *window,int key,int scancode,int action,int mods);
 		virtual void framebuffer_size_callback(GLFWwindow *window, int w, int h);
 		virtual void mouse_button_callback(GLFWwindow* window, int button, int action, int mod);
 		virtual void cursor_position_callback(GLFWwindow* window, double x, double y);

@@ -30,7 +30,6 @@ namespace NeroEngine {
 			glm::vec3 scale(_scale, _scale, 0);
 			_cameraMatrix = glm::scale(glm::mat4(1.0f), scale) * _cameraMatrix;
 
-			//glm::vec3 axis();
 			_cameraMatrix = glm::rotate(_cameraMatrix, _angle, _axis);
 
 

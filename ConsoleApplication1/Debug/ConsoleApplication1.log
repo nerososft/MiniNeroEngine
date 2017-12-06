@@ -1,4 +1,4 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ConsoleApplication1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Mesh.cpp
+  Camera3D.cpp
   ConsoleApplication1.vcxproj -> C:\Users\neros\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\NeroEngine.exe
   ConsoleApplication1.vcxproj -> C:\Users\neros\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\NeroEngine.pdb (Full PDB)

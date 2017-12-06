@@ -42,7 +42,7 @@ namespace NeroEngine {
 		glMatrixMode(GL_MODELVIEW);
 		update();
 	}
-	void Window::keycallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+	void Window::keyboard_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
 		if(action == GLFW_PRESS){
 			std::cout << key << std::endl;
 			_inputManager.pressKey(key);
@@ -86,12 +86,14 @@ namespace NeroEngine {
 			exit(EXIT_FAILURE);
 		}
 
+		glfwMakeContextCurrent(win);
+
 		glfwSetKeyCallback(win, StateBase::keycallback_dispatch);
 		glfwSetMouseButtonCallback(win, StateBase::mouse_button_callback_dispatch);
 		glfwSetCursorPosCallback(win, StateBase::cursor_position_callback_dispatch);
 		glfwSetFramebufferSizeCallback(win, StateBase::framebuffer_size_callback_dispatch);
 
-		glfwMakeContextCurrent(win);
+		
 
 		GLenum err = glewInit();
 		if (GLEW_OK != err) {
@@ -125,7 +127,7 @@ namespace NeroEngine {
 		_camera.init(width,height);
 		
 		_camera.setScale(100);
-		_camera.setPosition(glm::vec3(0, 0, 150));
+		_camera.setPosition(glm::vec3(0, 0.5, 0));
 		_camera.rotate(30, glm::vec3(0, 1, 0));
 	}
 
@@ -156,7 +158,6 @@ namespace NeroEngine {
 
 		glClearDepth(200.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		_glslProgram->use();
 		glActiveTexture(GL_TEXTURE0);

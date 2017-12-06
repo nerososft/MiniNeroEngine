@@ -15,9 +15,7 @@ uniform mat4 P;
 
 void main(){
 
- gl_Position.xyz = (P*vec4(vertexPosition,1.0f)).xyz;
-
- //gl_Position.xyz =vertexPosition;
+  gl_Position.xyz = (P*vec4(vertexPosition,1.0f)).xyz;
 
   gl_Position.w = 1.0;
   
