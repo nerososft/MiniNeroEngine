@@ -3,6 +3,7 @@ c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\console
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\colorrgb.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\errors.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\glslprogram.obj
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\imageloader.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\iomanager.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\main.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\mesh.obj
@@ -10,9 +11,8 @@ c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\console
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\picopng.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\statebase.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\window.obj
-c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\imageloader.obj
-c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\debug\neroengine.ilk
-c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\debug\neroengine.exe
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\camera3d.obj
+c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\inputmanager.obj
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\debug\neroengine.pdb
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\neroengine.tlog\cl.command.1.tlog
 c:\users\neros\documents\visual studio 2015\projects\consoleapplication1\consoleapplication1\debug\neroengine.tlog\cl.read.1.tlog

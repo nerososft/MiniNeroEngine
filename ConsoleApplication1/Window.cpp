@@ -25,20 +25,8 @@ namespace NeroEngine {
 			glDeleteBuffers(1, &_vboID);
 		}
 	}
-
-	void Window::keycallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
-		update();
-		if (action != GLFW_PRESS)
-			return;
-		switch (key) {
-		case GLFW_KEY_ESCAPE:
-			glfwSetWindowShouldClose(window, GL_TRUE);
-			break;
-		default:
-			break;
-		}
-	}
 	GLfloat ratio = 1.f;
+
 	void Window::framebuffer_size_callback(GLFWwindow *window, int w, int h) {
 		if (h == 0) {
 			h = 1;
@@ -54,6 +42,16 @@ namespace NeroEngine {
 		glMatrixMode(GL_MODELVIEW);
 		update();
 	}
+	void Window::keycallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+		if(action == GLFW_PRESS){
+			std::cout << key << std::endl;
+			_inputManager.pressKey(key);
+		}
+		else if (action==GLFW_RELEASE) {
+			_inputManager.releaseKey(key);
+		}
+	}
+	
 	void Window::mouse_button_callback(GLFWwindow* window, int button, int action, int mod) {
 		if (action == GLFW_PRESS) switch (button)
 		{
@@ -73,7 +71,7 @@ namespace NeroEngine {
 		return;
 	}
 	void Window::cursor_position_callback(GLFWwindow* window, double x, double y) {
-		return;
+		_inputManager.setMouseCoords(x, y);
 	}
 
 	void Window::glInit() {
@@ -88,14 +86,12 @@ namespace NeroEngine {
 			exit(EXIT_FAILURE);
 		}
 
-		framebuffer_size_callback(win, this->width, this->height);
 		glfwSetKeyCallback(win, StateBase::keycallback_dispatch);
-		glfwSetFramebufferSizeCallback(win, StateBase::framebuffer_size_callback_dispatch);
 		glfwSetMouseButtonCallback(win, StateBase::mouse_button_callback_dispatch);
 		glfwSetCursorPosCallback(win, StateBase::cursor_position_callback_dispatch);
+		glfwSetFramebufferSizeCallback(win, StateBase::framebuffer_size_callback_dispatch);
 
 		glfwMakeContextCurrent(win);
-
 
 		GLenum err = glewInit();
 		if (GLEW_OK != err) {
@@ -116,16 +112,13 @@ namespace NeroEngine {
 		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
 		_tga = imageLoader.loadTGA("obj/ArcticCondorGold.tga").texID;
 		
-		
-
-		
+	
 		Vertex vertexData[2250];
 		for (int i = 0; i < _vertdata.size(); i++) {
 			//std::cout << "x:" << _vertdata[i].position.x << " ,y:" << _vertdata[i].position.y << " ,z:" << _vertdata[i].position.z << std::endl;
 			//std::cout << "u:" << _vertdata[i].uv.u << " ,v:" << _vertdata[i].uv.v << std::endl;
 			vertexData[i] = _vertdata[i];
 		}
-	
 	
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);//先将buffer绑定到当前
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);//将顶点数组放入这个buffer
@@ -139,14 +132,39 @@ namespace NeroEngine {
 		_glslProgram->addAttribute("vertexNormal");
 		_glslProgram->linkShaders();
 
-	}
-	void Window::update() {
+		_camera.init(width,height);
 		
+		_camera.setScale(100);
+		_camera.setPosition(glm::vec3(0, 0, 150));
+		_camera.rotate(30, glm::vec3(0, 1, 0));
+	}
+
+	float scale = 1;
+	float angle = 0;
+	float scale_speed = 1;
+	void Window::update() {
+		_camera.update();
+	
+		_camera.rotate(angle, glm::vec3(0, 1, 0));
+		angle += 0.1;
+
+		if (_inputManager.isKeyPressed(GLFW_KEY_Q)) {
+			std::cout << "key Q pressed" << std::endl;
+			_camera.setScale(scale);
+			scale++;
+		}
+		if (_inputManager.isKeyPressed(GLFW_KEY_E)) {
+			std::cout << "key E pressed" << std::endl;
+			_camera.setScale(scale);
+			scale--;
+		}
 	}
 
 
 	void Window::Render() {
-		glClearDepth(1.0f);
+		update(); 
+
+		glClearDepth(200.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -155,7 +173,10 @@ namespace NeroEngine {
 
 		GLuint textureUniform = _glslProgram->getUniformLocation("mySampler");
 		glUniform1i(textureUniform, 0);
-		
+
+		glm::mat4 projectionMatrix = _camera.getCameraMatrix();
+		GLuint pUniform = _glslProgram->getUniformLocation("P");
+		glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 		glBindTexture(GL_TEXTURE_2D, _tga);
 
 		glBindBuffer(GL_ARRAY_BUFFER, _vboID);

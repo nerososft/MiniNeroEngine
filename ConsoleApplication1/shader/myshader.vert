@@ -11,13 +11,13 @@ out vec4 fragmentColor;
 out vec2 fragmentUV;
 out vec3 fragmentNormal;
 
-//uniform mat4 P;
+uniform mat4 P;
 
 void main(){
 
- //gl_Position.xy = (P*vec4(vertexPosition,0.0f,1.0f)).xy;
+ gl_Position.xyz = (P*vec4(vertexPosition,1.0f)).xyz;
 
- gl_Position.xyz =vertexPosition;
+ //gl_Position.xyz =vertexPosition;
 
   gl_Position.w = 1.0;
   

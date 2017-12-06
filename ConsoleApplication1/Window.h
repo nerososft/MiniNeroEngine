@@ -9,6 +9,8 @@
 #include <vector>
 #include "Vertex.h"
 #include "TGATexture.h"
+#include "Camera3D.h"
+#include "InputManager.h"
 
 namespace NeroEngine {
 	class Window : public StateBase
@@ -47,7 +49,9 @@ namespace NeroEngine {
 		int height;
 		std::shared_ptr<ColorRGB> backGround;
 
-		NeroEngine::GLSLProgram* _glslProgram;
+		GLSLProgram* _glslProgram;
+		Camera3D _camera;
+		InputManager _inputManager;
 
 		std::vector<Vertex> _vertdata;
 
