@@ -2,14 +2,14 @@
 #include <iostream>
 namespace NeroEngine {
 
-	Mesh::Mesh(const std::vector<Vertex>& vertData, GLint textureId) {
-		this->_textureId = textureId;
-		this->_vertData = vertData;
+	Mesh::Mesh(const std::vector<Vertex>& vertData, GLint textureId, GLSLProgram* glslProgram) {
+		_textureId = textureId;
+		_vertData = vertData;
+		_glslProgram = glslProgram;
 		init();
 	}
 
 	void Mesh::init() {
-
 		if (_VBOId == 0) {
 			glGenBuffers(1, &_VBOId); // create a buffer
 		}
@@ -28,12 +28,12 @@ namespace NeroEngine {
 	}
 
 	void Mesh::draw() {
+
 		glBindTexture(GL_TEXTURE_2D,_textureId);
 		glBindBuffer(GL_ARRAY_BUFFER, _VBOId);
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);
-		//position attrib pointer
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, position));
 		glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void *)offsetof(Vertex, color));
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, uv));

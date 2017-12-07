@@ -8,6 +8,7 @@
 #include "Errors.h"
 #include "ObjLoader.h"
 #include "ImageLoader.h"
+#include <time.h>
 
 namespace NeroEngine {
 	Window::Window(char *title, int width, int height, std::shared_ptr<ColorRGB> backGround) :
@@ -112,9 +113,7 @@ namespace NeroEngine {
 		ObjLoader ObjLoader;
 		ImageLoader imageLoader;
 	
-		_tga = imageLoader.loadTGA("obj/ArcticCondorGold.tga").texID;
-		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
-		_dragonMesh = Mesh(_vertdata, _tga);
+		
 		
 		_glslProgram = new NeroEngine::GLSLProgram();
 		_glslProgram->complieShaders("shader/myshader.vert","shader/myshader.frag");
@@ -124,8 +123,12 @@ namespace NeroEngine {
 		_glslProgram->addAttribute("vertexNormal");
 		_glslProgram->linkShaders();
 
+
+		_tga = imageLoader.loadTGA("obj/ArcticCondorGold.tga").texID;
+		_vertdata = ObjLoader.loadObjFromFile("obj/arcticcondor.obj");
+		_dragonMesh = Mesh(_vertdata, _tga, _glslProgram);
+
 		_camera.init(width,height);
-		
 		_camera.setScale(100);
 		_camera.setPosition(glm::vec3(0, 0.5, 0));
 		_camera.rotate(30, glm::vec3(0, 1, 0));
@@ -152,6 +155,7 @@ namespace NeroEngine {
 		}
 	}
 
+	float t = 0.0f;
 
 	void Window::Render() {
 		update(); 
@@ -165,7 +169,13 @@ namespace NeroEngine {
 		GLuint textureUniform = _glslProgram->getUniformLocation("mySampler");
 		glUniform1i(textureUniform, 0);
 
+		
+		t += 0.003f;
+		GLuint timeUniform = _glslProgram->getUniformLocation("time");
+		glUniform1f(timeUniform,t);
+
 		glm::mat4 projectionMatrix = _camera.getCameraMatrix();
+		
 		GLuint pUniform = _glslProgram->getUniformLocation("P");
 		glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 	
